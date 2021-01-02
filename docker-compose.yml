@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+    compute:
+        build:
+            context: "./compute"
+        environment:
+            - "LOCAL_USER=${USER}"
+            - "PBS_SERVER=head"
+        volumes:
+            - "./home:/home/$USER"
+            - "/etc/passwd:/host/passwd:ro"
+        depends_on:
+            - "head"
+    head:
+        build:
+            context: "./head"
+        environment:
+            - "LOCAL_USER=${USER}"
+            - "PBS_SERVER=head"
+        volumes:
+            - "./home:/home/$USER"
+            - "/etc/passwd:/host/passwd:ro"
+        hostname: "head"
+    login:
+        build:
+            context: "./login"
+        environment:
+            - "LOCAL_USER=${USER}"
+            - "PBS_SERVER=head"
+        volumes:
+            - "./home:/home/$USER"
+            - "/etc/passwd:/host/passwd:ro"
+        hostname: "login"
+        ports:
+            - "2022:22"
+
