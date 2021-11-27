@@ -1,4 +1,4 @@
-# これは何
+# docker-compose-hpc
 
 HPCでよく用いられている [Environment Modules](https://modules.readthedocs.io/en/latest/) と [ジョブスケジューラ(OpenPBS)](https://www.openpbs.org/) をお手軽に体験するための docker-compose 環境です。
 
